@@ -5,7 +5,7 @@ const SESSION_KEY = 'traceable_health_session';
 
 export const authService = {
   login: async (username: string, password: string): Promise<User> => {
-    // Simulate API delay
+    // Simulated API latency
     await new Promise(resolve => setTimeout(resolve, 800));
 
     const usersStr = localStorage.getItem(USERS_KEY);
@@ -14,7 +14,7 @@ export const authService = {
     const user = users.find((u: any) => u.username === username && u.password === password);
     
     if (user) {
-      // Ensure we return the full user object including new fields if they exist, or defaults
+      // Normalize user object and apply defaults
       const userData: User = { 
         username: user.username, 
         name: user.name, 
@@ -35,8 +35,7 @@ export const authService = {
 
   sendVerificationCode: async (email: string): Promise<string> => {
     await new Promise(resolve => setTimeout(resolve, 1500));
-    // In a real app, this calls a backend to send an email.
-    // For this demo, we'll return a fixed code or alert it.
+    // In production, this would call a backend email service.
     const code = Math.floor(100000 + Math.random() * 900000).toString();
     console.log(`[MOCK EMAIL SERVICE] Sent verification code ${code} to ${email}`);
     alert(`[DEMO] Your verification code is: ${code}`); 
@@ -61,7 +60,7 @@ export const authService = {
     users.push(newUser);
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
     
-    // Create session object without password
+    // Store session object without password
     const { password, ...userData } = newUser;
     localStorage.setItem(SESSION_KEY, JSON.stringify(userData));
     
@@ -74,7 +73,7 @@ export const authService = {
     const usersStr = localStorage.getItem(USERS_KEY);
     let users = usersStr ? JSON.parse(usersStr) : [];
 
-    // Update in "database"
+    // Update stored profile data
     users = users.map((u: any) => {
         if (u.username === user.username) {
             return { ...u, ...user }; // Merge updates

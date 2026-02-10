@@ -1,20 +1,43 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Traceable Health Frontend
 
-# Run and deploy your AI Studio app
+React + Vite frontend for the Traceable Health EHR data pipeline. The UI provides authentication, document upload, document review, search, and account settings.
 
-This contains everything you need to run your app locally.
+## Requirements
 
-View your app in AI Studio: https://ai.studio/apps/temp/1
+- Node.js 20 or later.
 
-## Run Locally
+## Installation
 
-**Prerequisites:**  Node.js
+From the `ehr-frontend-website` folder:
 
+```bash
+npm install
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Optional: create `.env.local` and configure any keys used by experimental features (for example `GEMINI_API_KEY`).
+
+## Development
+
+Start the Vite dev server:
+
+```bash
+npm run dev
+```
+
+Open http://localhost:3000.
+
+The app expects the backend FastAPI server to be running at `http://localhost:8000` and exposes the main flows:
+
+- Email‑based registration and login.
+- PDF upload for clinical documents.
+- Document dashboard and detail views.
+- Search across processed documents.
+- User profile and settings.
+
+## Building for production
+
+```bash
+npm run build
+```
+
+The bundled assets are written to `dist/`.

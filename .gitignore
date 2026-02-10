@@ -8,7 +8,7 @@ Thumbs.db
 *.log
 backend.log
 
-# Python
+# Python build artifacts
 __pycache__/
 *.py[cod]
 *$py.class
@@ -38,6 +38,7 @@ ENV/
 
 # Node / frontend
 node_modules/
+dist/
 
 # Editor / IDE
 .vscode/

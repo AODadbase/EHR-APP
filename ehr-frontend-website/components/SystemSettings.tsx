@@ -13,7 +13,7 @@ const SystemSettings: React.FC<SystemSettingsProps> = ({ currentUser, onUpdateUs
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<{type: 'success' | 'error', text: string} | null>(null);
 
-    // Sync if currentUser prop changes externally
+    // Keep form data in sync with currentUser
     useEffect(() => {
         setFormData(currentUser);
     }, [currentUser]);
@@ -59,7 +59,7 @@ const SystemSettings: React.FC<SystemSettingsProps> = ({ currentUser, onUpdateUs
 
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <form onSubmit={handleSubmit}>
-                    {/* Header Image Section */}
+                    {/* Profile header */}
                     <div className="p-8 border-b border-slate-100 flex flex-col sm:flex-row items-center gap-8">
                         <div className="relative group">
                             <div className="w-24 h-24 rounded-full bg-slate-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
@@ -83,7 +83,7 @@ const SystemSettings: React.FC<SystemSettingsProps> = ({ currentUser, onUpdateUs
                         </div>
                     </div>
 
-                    {/* Form Fields */}
+                    {/* Form fields */}
                     <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                         {message && (
                             <div className={`col-span-1 md:col-span-2 p-4 rounded-lg text-sm font-medium ${message.type === 'success' ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}`}>
@@ -95,7 +95,7 @@ const SystemSettings: React.FC<SystemSettingsProps> = ({ currentUser, onUpdateUs
                             <label className="text-sm font-medium text-slate-700">Full Name</label>
                             <div className="relative">
                                 <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 h-4 w-4" />
-                                <input 
+                                <input
                                     name="name"
                                     type="text"
                                     value={formData.name}
@@ -109,7 +109,7 @@ const SystemSettings: React.FC<SystemSettingsProps> = ({ currentUser, onUpdateUs
                             <label className="text-sm font-medium text-slate-700">Username</label>
                             <div className="relative">
                                 <AtSign className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 h-4 w-4" />
-                                <input 
+                                <input
                                     name="username"
                                     type="text"
                                     readOnly // Usually usernames are immutable

@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const [selectedDocId, setSelectedDocId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check for existing session
+    // Restore existing session from storage
     const currentUser = authService.getCurrentUser();
     if (currentUser) {
       setUser(currentUser);
