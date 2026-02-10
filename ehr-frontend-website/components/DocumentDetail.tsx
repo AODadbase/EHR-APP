@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, RefreshCw, FileText, Code, Stethoscope, Save, Download } from 'lucide-react';
 import { ProcessedDocument, ExtractedData } from '../types';
-import { fetchDocumentById, reExtractDocument } from '../services/mockService';
+import { fetchDocumentById, reExtractDocument } from '../services/apiService';
 import { DataCard, ListCard } from './DataDisplay';
 
 interface DocumentDetailProps {

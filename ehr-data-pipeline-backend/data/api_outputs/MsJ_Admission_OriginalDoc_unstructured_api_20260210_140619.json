@@ -1,0 +1,1021 @@
+{
+  "source_file": "/Users/joanchan/Desktop/COZAD MedSoftware/ehr-data-pipeline-backend/data/uploads/MsJ_Admission_OriginalDoc.pdf",
+  "timestamp": "2026-02-10T14:06:19.284722",
+  "element_count": 60,
+  "elements": [
+    {
+      "type": "unknown",
+      "text": "Admission Note Example",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "coordinates": null
+      },
+      "index": 0,
+      "category": "Header"
+    },
+    {
+      "type": "unknown",
+      "text": "ADMISSION NOTE (Verified)",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "456258e82110d13fec373af97cfe9430",
+        "coordinates": null
+      },
+      "index": 1,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "cc: Family Doctor Specialist 1 Specialist 2 etc. DATE OF ADMISSION: Date",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "fb2740f8b4d132da2d4f414f9a5ecd3a",
+        "coordinates": null
+      },
+      "index": 2,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "PATIENT IDENTIFICATION: Ms. J is a pleasant 76-year-old woman who presented to the Emergency Department from home in London.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "fb2740f8b4d132da2d4f414f9a5ecd3a",
+        "coordinates": null
+      },
+      "index": 3,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "REASON FOR REFERRAL: Concern regarding",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "456258e82110d13fec373af97cfe9430",
+        "coordinates": null
+      },
+      "index": 4,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "pneumosepsis.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "62d76aa764da5e4a2f4fae890203d585",
+        "coordinates": null
+      },
+      "index": 5,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "ACTIVE MEDICAL ISSUES:",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "456258e82110d13fec373af97cfe9430",
+        "coordinates": null
+      },
+      "index": 6,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "1. Sepsis secondary to pneumonia.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "9442bccea26a41ecaed06b792a4f7a3a",
+        "coordinates": null
+      },
+      "index": 7,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "2. Atrial fibrillation with rapid ventricular rate.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "9442bccea26a41ecaed06b792a4f7a3a",
+        "coordinates": null
+      },
+      "index": 8,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "3. Hyponatremia, hypovolemic",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "9442bccea26a41ecaed06b792a4f7a3a",
+        "coordinates": null
+      },
+      "index": 9,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "4. Migratory polyarthralgia.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "9442bccea26a41ecaed06b792a4f7a3a",
+        "coordinates": null
+      },
+      "index": 10,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "PAST MEDICAL HISTORY:",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "456258e82110d13fec373af97cfe9430",
+        "coordinates": null
+      },
+      "index": 11,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "1. Squamous cell carcinoma of the lung, stage III, diagnosed in November of 2019. No surgery was performed given PFTs (FEV1 of 69%, DLCO of 44). They underwent 60 Gy of radiation and 30 fractions to the left lung, as well as treatment with cisplatin and etoposide. Chemotherapy finished February 2020.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "d9ec7bffe9348d41fe4ccbc30e147770",
+        "coordinates": null
+      },
+      "index": 12,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "2. Left leg DVT sustained in February 2020, completed a total course of Edoxaban 60 mg, ultrasound of the leg veins performed on July 23 showed a 2 mm residual clot.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "d9ec7bffe9348d41fe4ccbc30e147770",
+        "coordinates": null
+      },
+      "index": 13,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "3. Gastroesophageal reflux disease.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "d9ec7bffe9348d41fe4ccbc30e147770",
+        "coordinates": null
+      },
+      "index": 14,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "4. Remote history of spastic bladder.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "d9ec7bffe9348d41fe4ccbc30e147770",
+        "coordinates": null
+      },
+      "index": 15,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "5. Remote history of breast cyst.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "d9ec7bffe9348d41fe4ccbc30e147770",
+        "coordinates": null
+      },
+      "index": 16,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "RECONCILED ADMISSION MEDICATION LIST:",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "456258e82110d13fec373af97cfe9430",
+        "coordinates": null
+      },
+      "index": 17,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "1. Diltiazem 120 mg p.o. daily, new as of 1 week PTA. (Held on admission)",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "fe92b8134dfc0096921850dc13d28150",
+        "coordinates": null
+      },
+      "index": 18,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "2. Metoprolol 50 mg po bid (newly started on admission)",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "456258e82110d13fec373af97cfe9430",
+        "coordinates": null
+      },
+      "index": 19,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "3. Apixaban 5 mg oral b.i.d., new as of 1 week PTA",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 1,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "53d05d000ffd218670d1a0ba751340ec",
+        "coordinates": null
+      },
+      "index": 20,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "Admission Note Example",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "coordinates": null
+      },
+      "index": 21,
+      "category": "Header"
+    },
+    {
+      "type": "unknown",
+      "text": "4. Amoxi-Clav 500/125 mg t.i.d., prescribed a 7-day course 1 week PTA (completed)",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 22,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "5. Ceftriaxone 1 g IV q 24 X 7 days to stop on Date",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 23,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "6. Azithromycin 500 mg now followed by 250 mg daily for 5",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 24,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "days to stop on Date",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 25,
+      "category": "UncategorizedText"
+    },
+    {
+      "type": "unknown",
+      "text": "7. CBD oil at bedtime.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 26,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "8. Tylenol 650 mg q4 hrs PRN started for pain or fever",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 27,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "ALLERGIES: Sustained some sort of severe reaction while on paclitaxel chemotherapy. This was switched to cisplatin and etoposide.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 28,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "SOCIAL HISTORY: Ms. J is a pleasant 76-year-old lady who lives in a home in London with her husband. She gets assistance from him for some of her IADLs including groceries and medications. She is independent for her ADLs and ambulates independently with no gait aids. She is a former smoker with a total of approximately 15-pack-year history who quit 45 years ago. She does not currently drink alcohol. She does use CBD oil every evening for sleep, but does not use any other recreational drugs.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 29,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "HISTORY OF PRESENTING ILLNESS: her underlying malignancy and PFT findings, she has not respiratory symptoms. She presents to the hospital today with a history of 2 weeks of shortness of breath, fever, chills, night sweats and feeling generally unwell. She presented to the St. Joseph's Urgent Care on Date. A CTPA was performed which did not show a PE, but did show a left lower lobe consolidation consistent with pneumonia and she was prescribed a 7-day course of amoxicillin/clavulanate. Ms. J feels that she has not had significant improvement since then.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 30,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "She determined to come in today due to generalized weakness and desire for improvement. She notes that she has a thermometer at home and did not appear to relate any measured temperatures, but was noted to be febrile at triage.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 31,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "As mentioned, she notes a history of increased shortness of breath on exertion, primarily over the past 2 weeks. We note",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 2,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "2ca700895cb622389b1b07cfbda9aa6e",
+        "coordinates": null
+      },
+      "index": 32,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "Admission Note Example",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 3,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "coordinates": null
+      },
+      "index": 33,
+      "category": "Header"
+    },
+    {
+      "type": "unknown",
+      "text": "that at baseline, since her treatment for lung cancer, she has had some shortness of breath while talking. Her shortness of breath on exertion is however new. She has also had some mild weakness over the past 2 weeks, does endorse decreased oral intake secondary to decreased appetite over the past 2 weeks. She does have some very mild chest pain, which she says has been present for quite a while, several months, but did improve, and then came back over the past 2 to 3 weeks after sustained coughing fits. She does note that she has quite a sustained cough starting from February that has not changed recently. We do note that this is significant enough to cause her posttussive emesis on a somewhat regular basis, though she was not able to quantify how often. Ms. J also endorses a history of 6 weeks of migratory polyarthralgia. It initially started in her left hand, where she had an area of erythema that was tender to touch. She did have decreased mobility in that wrist, but was able to sustain some movement. It then spread up into 2 or 3 of her fingers, no particular distribution and limited mobility in them entirely. This pain persisted for 3 to 5 days and then resolved spontaneously. She had a week of no pain, and then the pain appeared similarly in her right hand. This pattern continued and currently she has this pain in her left ankle. She is not able to significantly move her ankle. At this point, it is quite tender and she is having difficulty ambulating given the pain.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 3,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "aee86c474b29bc2460d15e2ed88f0c5b",
+        "coordinates": null
+      },
+      "index": 34,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "REVIEW OF SYSTEMS: She was positive for 3-day history of mild diarrhea. She did not have any headaches or vision changes. She has no abdominal pain and no recent urinary changes. She does not report any palpitations. She has not had any residual stiffness or other pain in her joints after the inflammatory polyarthralgia fade.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 3,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "aee86c474b29bc2460d15e2ed88f0c5b",
+        "coordinates": null
+      },
+      "index": 35,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "PHYSICAL EXAMINATION:",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 3,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "aee86c474b29bc2460d15e2ed88f0c5b",
+        "coordinates": null
+      },
+      "index": 36,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "appeared in mild respiratory distress with tachypnea and some supraclavicular indrawings.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 3,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "85d7c220c4567c1e2e08eec0d0a000cc",
+        "coordinates": null
+      },
+      "index": 37,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "Vitals: At triage, febrile to 39.7. Heart rate of 156 and",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 3,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "85d7c220c4567c1e2e08eec0d0a000cc",
+        "coordinates": null
+      },
+      "index": 38,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "Admission Note Example",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 4,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "coordinates": null
+      },
+      "index": 39,
+      "category": "Header"
+    },
+    {
+      "type": "unknown",
+      "text": "respiration rate of 30. Blood pressure 123/73 and satting 96% on 2 litres. On assessment now, temperature is 37.3. Heart rate had decreased down to be 95 to 106. Respiratory rate 22. Blood pressure 106/76, SpO2 97% on 2 litres. Ms. J did desaturate periodically into the high 70s while talking, but when encouraged to breathe through her nose with some pauses in her speech, these did recover.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 4,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7bc17e8025e5fc843446d4a3cb14242d",
+        "coordinates": null
+      },
+      "index": 40,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "Respiratory: Diffuse crackles were present throughout the right lobe of the lung, with no particular upper versus lower predominance. There were decreased breath sounds to the left base, consistent with low lung volumes. There were no crackles in the left lung. Cardiovascular: Normal S1, S2 with no additional sounds. No peripheral edema. JVP was flat. Abdomen: Soft, nontender, nondistended. Extremities: Left ankle examination showed some mild erythema on the lateral surface of the left ankle. It was warm to touch and there was significant pain to direct palpation. Ms. J was not significantly able to mobilize her joint due to pain. Examination of the bilateral hands did not show any acute tenderness or limitation in range of motion, though it may show some baseline mild osteoarthritis.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 4,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7bc17e8025e5fc843446d4a3cb14242d",
+        "coordinates": null
+      },
+      "index": 41,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "INVESTIGATIONS:",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 4,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7bc17e8025e5fc843446d4a3cb14242d",
+        "coordinates": null
+      },
+      "index": 42,
+      "category": "Title"
+    },
+    {
+      "type": "unknown",
+      "text": "1. VBG showed a pH of 7.43, CO2 of 40, bicarb of 27.2. 2. Electrolytes showed hyponatremia at 129, potassium of 4.6, chloride of 93, bicarbonate 24. Creatinine was 58. 3. Normal white count at 8.1. Hemoglobin at 112, from 127 on May 5. Platelets 422. 4. Chest x-ray shows chronic left-sided volume loss. There are no acute areas of consolidation seen. 5. X-ray of the left ankle shows no fracture. 6. A CTPA on August 31 shows no PE, but does show left lower lobe consolidation consistent with pneumonia.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 4,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "ea1d45c6f10b1bccbc998c63a5e5b90c",
+        "coordinates": null
+      },
+      "index": 43,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "ASSESSMENT: In summary, Ms. J is a pleasant 76-year-old lady presenting from home with fever,",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 4,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "ea1d45c6f10b1bccbc998c63a5e5b90c",
+        "coordinates": null
+      },
+      "index": 44,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "Admission Note Example",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "coordinates": null
+      },
+      "index": 45,
+      "category": "Header"
+    },
+    {
+      "type": "unknown",
+      "text": "tachycardia, tachypnea, in the setting of previously identified left lower lobe pneumonia.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 46,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "1. Regarding Pneumosepsis: As mentioned, she has a previously diagnosed pneumonia. We do note that there are no acute changes on the chest x-ray, but it did not appear to be visualized to the previous one. There was no other significant infectious source expressed by the patient. We do note her hyponatremia and her diarrhea for the last couple of days and therefore we would add legionella to the differential of organisms, possibly causing this. We think GI source or urine source of infection are unlikely.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 47,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "2. Regarding AFib and rapid ventricular response: We feel that the cause of this is most likely secondary to hypovolemia and/or infection. Ms. J rate was able to be controlled with just oral metoprolol 50 mg and therefore an IV push metoprolol was not given.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 48,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "3. Regarding hyponatremia: We feel that this is most likely secondary to hypovolemia, as Ms. J has a documented decreased oral intake.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 49,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "4. Regarding migratory polyarthralgia: This pattern is nonspecific, time-limited, and intermittent; she currently only has one painful joint. The multiple joints and subacute time course are not consistent with septicarthritis. She does have evidence of possible osteoarthritis on examination, and it is possible that this could be related to minor joint trauma causing a more acute flare of pain. A rheumatologic condition remains on the differential.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 50,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "Best Practices:",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 51,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "• Per her wishes, Ms. J is a DNR restricted.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 52,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "• As Ms. J is already on apixaban, we will not add additional DVT prophylaxis.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 53,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "• Given that she is on CBD oil at bedtime, but did not bring this, we have opted to add nabilone 1 mg qhs.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 54,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "o We could arrange to administer her home CBD oil if it is possible for her husband to drop it off.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 55,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "• Disposition: Ms. J will be able to return home to her husband after she has defervesced.",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 56,
+      "category": "ListItem"
+    },
+    {
+      "type": "unknown",
+      "text": "Name, MD Resident",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 5,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "7790ca3167a31ec99a2620b9c244ee7c",
+        "coordinates": null
+      },
+      "index": 57,
+      "category": "NarrativeText"
+    },
+    {
+      "type": "unknown",
+      "text": "Admission Note Example",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 6,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "coordinates": null
+      },
+      "index": 58,
+      "category": "Header"
+    },
+    {
+      "type": "unknown",
+      "text": "Name Attending",
+      "metadata": {
+        "is_extracted": "true",
+        "filetype": "application/pdf",
+        "languages": [
+          "eng"
+        ],
+        "page_number": 6,
+        "filename": "MsJ_Admission_OriginalDoc.pdf",
+        "parent_id": "8209e5fa3bc0a97453a055deb1f1c91f",
+        "coordinates": null
+      },
+      "index": 59,
+      "category": "NarrativeText"
+    }
+  ]
+}

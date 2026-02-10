@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, FileText, CheckCircle, Clock, AlertCircle, ArrowRight } from 'lucide-react';
-import { fetchDocuments, uploadDocument } from '../services/mockService';
+import { fetchDocuments, uploadDocument } from '../services/apiService';
 import { ProcessedDocument } from '../types';
 
 interface DashboardProps {

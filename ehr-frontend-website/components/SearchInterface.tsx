@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, FileText, ArrowRight } from 'lucide-react';
-import { searchDocuments } from '../services/mockService';
+import { searchDocuments } from '../services/apiService';
 import { SearchResult } from '../types';
 
 interface SearchInterfaceProps {
