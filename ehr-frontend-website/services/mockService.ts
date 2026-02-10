@@ -2,7 +2,7 @@ import { ProcessedDocument, UploadConfig, SearchResult } from '../types';
 
 const MOCK_DELAY = 1500;
 
-// Initialize with an empty array. No dummy data.
+// In-memory collection of uploaded documents
 let documents: ProcessedDocument[] = [];
 
 export const fetchDocuments = async (): Promise<ProcessedDocument[]> => {
@@ -31,8 +31,7 @@ export const uploadDocument = async (file: File, config: UploadConfig): Promise<
         use_api: config.use_api,
         use_llm: config.use_llm,
         elements_count: Math.floor(Math.random() * 500) + 50,
-        // Since we removed the mock generator, we initialize empty extracted data.
-        // In a real app, this would be populated by the backend response.
+        // Placeholder extracted data until backend integration
         extracted_data: {
           patient_info: { name: null, mrn: null, age: null, gender: null, date_of_birth: null },
           vital_signs: {},
@@ -72,7 +71,7 @@ export const searchDocuments = async (query: string): Promise<SearchResult[]> =>
   return new Promise((resolve) => {
     setTimeout(() => {
       if (!query) resolve([]);
-      // Simple mock search implementation against the in-memory documents
+      // Simple search over in-memory documents
       const results: SearchResult[] = documents
         .filter(d => d.filename.toLowerCase().includes(query.toLowerCase()))
         .map(d => ({

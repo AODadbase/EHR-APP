@@ -1,4 +1,4 @@
-// Matching schema from DataExtractor (Image 2)
+// Type definitions shared across the frontend
 
 export interface User {
   username: string;
@@ -9,7 +9,7 @@ export interface User {
   secondaryEmail?: string;
   pronoun?: string;
   position?: string;
-  profileImage?: string; // Base64 string
+  profileImage?: string; // Base64-encoded image
 }
 
 export interface PatientInfo {

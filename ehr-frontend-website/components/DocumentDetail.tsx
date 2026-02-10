@@ -17,12 +17,12 @@ const DocumentDetail: React.FC<DocumentDetailProps> = ({ documentId, onBack }) =
   const [showConfig, setShowConfig] = useState(false);
   const [selectedSections, setSelectedSections] = useState<string[]>([]);
 
-  // Configurable sections for re-extraction
+    // Sections available for re-extraction
   const availableSections = ['patient_info', 'vital_signs', 'medications', 'diagnoses', 'clinical_notes'];
 
   useEffect(() => {
     loadDoc();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Intentionally ignore exhaustive-deps for document reload
   }, [documentId]);
 
   const loadDoc = async () => {
@@ -37,7 +37,7 @@ const DocumentDetail: React.FC<DocumentDetailProps> = ({ documentId, onBack }) =
     setIsReExtracting(true);
     try {
         await reExtractDocument(doc.id, selectedSections);
-        await loadDoc(); // Reload to see "changes"
+        await loadDoc(); // Reload to reflect updated extraction
         setShowConfig(false);
     } catch (e) {
         console.error(e);
@@ -62,7 +62,7 @@ const DocumentDetail: React.FC<DocumentDetailProps> = ({ documentId, onBack }) =
 
   return (
     <div className="max-w-7xl mx-auto pb-20">
-      {/* Top Bar */}
+    {/* Header bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div className="flex items-center gap-4">
             <button onClick={onBack} className="p-2 hover:bg-slate-200 rounded-lg text-slate-600 transition-colors">
@@ -117,7 +117,7 @@ const DocumentDetail: React.FC<DocumentDetailProps> = ({ documentId, onBack }) =
         </div>
       </div>
 
-      {/* Tabs */}
+    {/* Tab navigation */}
       <div className="border-b border-slate-200 mb-8">
         <nav className="flex gap-8">
             <TabButton 
@@ -141,7 +141,7 @@ const DocumentDetail: React.FC<DocumentDetailProps> = ({ documentId, onBack }) =
         </nav>
       </div>
 
-      {/* Content */}
+    {/* Tab content */}
       <div className="animate-in fade-in duration-300">
         {activeTab === 'extraction' && doc.extracted_data && (
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -227,7 +227,7 @@ const DocumentDetail: React.FC<DocumentDetailProps> = ({ documentId, onBack }) =
   );
 };
 
-// Sub-components for cleaner code
+// Tab and display helpers
 const TabButton = ({ active, onClick, icon, label }: any) => (
     <button
         onClick={onClick}

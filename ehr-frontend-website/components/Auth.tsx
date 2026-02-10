@@ -13,7 +13,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   
-  // Password Visibility State
+    // Password visibility state
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -27,7 +27,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
     verificationCode: ''
   });
 
-  // Validation State
+    // Validation state
   const [usernameError, setUsernameError] = useState('');
   const [passwordCriteria, setPasswordCriteria] = useState({
     length: false,
@@ -37,11 +37,11 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   });
   const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-  // Real-time validation effects
+    // Real-time validation
   useEffect(() => {
     if (isLogin) return;
 
-    // Password Criteria Check
+    // Password criteria check
     const pwd = formData.password;
     setPasswordCriteria({
         length: pwd.length >= 8,
@@ -50,7 +50,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
         number: /[0-9]/.test(pwd)
     });
 
-    // Match Check
+    // Password match check
     setPasswordsMatch(formData.password === formData.confirmPassword || formData.confirmPassword === '');
   }, [formData.password, formData.confirmPassword, isLogin]);
 
@@ -59,7 +59,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
         setUsernameError('');
         return;
     }
-    // Username Validation
+    // Username validation
     const u = formData.username;
     if (!u) {
         setUsernameError('');
@@ -85,7 +85,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
     e.preventDefault();
     setError('');
     
-    // --- VALIDATION CHECKS ---
+    // Validation checks
     if (usernameError) {
         setError(`Username Error: ${usernameError}`);
         return;
@@ -106,7 +106,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
 
     setLoading(true);
 
-    // --- BACKEND CALL ---
+    // Backend request
     try {
         const response = await fetch('http://localhost:8000/api/send-code', {
             method: 'POST',
@@ -117,7 +117,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
         const data = await response.json();
 
         if (response.ok) {
-            // Success
+            // On success, advance to verification step
             setStep('verification');
         } else {
             setError(data.detail || 'Failed to send verification code.');
@@ -136,7 +136,7 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
     setLoading(true);
 
     try {
-        // Verify the code with Python
+        // Verify code with backend
         const verifyResponse = await fetch('http://localhost:8000/api/verify-code', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -147,10 +147,10 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
         });
 
         if (!verifyResponse.ok) {
-            throw new Error("Invalid verification code. Please try again.");
+            throw new Error("Invalid verification code.");
         }
 
-        // If verified, proceed with registration
+        // If verified, register user locally
         const user = await authService.register({
             username: formData.username,
             password: formData.password,

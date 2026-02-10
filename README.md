@@ -1,135 +1,146 @@
-# EHR Data Pipeline + Frontend
+# Traceable Health – EHR Data Pipeline
 
-This workspace contains both:
+This repository contains a small end‑to‑end demo for clinical document processing:
 
-- **Backend**: EHR data pipeline in Python (PDF processing, extraction, formatting)
-- **Frontend**: React dashboard for uploading PDFs, viewing extracted clinical data, and searching
+- **Backend** – Python pipeline and FastAPI API for PDF ingestion, data extraction, and discharge‑summary generation.
+- **Frontend** – React + Vite web UI for authentication, document upload, review, and search.
 
-They are wired together so the React app talks to the Python API.
+Use this README for a high‑level overview. See the folder‑level READMEs for details.
 
-## Project Structure
+## Architecture
 
-- `ehr-data-pipeline-backend/` – Python pipeline + FastAPI server
-- `ehr-frontend-website/` – React + Vite frontend UI
-- `start_app.sh` – (optional) helper script you can use to start both (if you choose to wire it up)
+- Browser client (React/Vite) runs on http://localhost:3000 during development.
+- Frontend sends HTTP requests to the FastAPI backend at http://localhost:8000 under the `/api` path.
+- Backend orchestrates PDF processing via Unstructured.io, runs extraction and formatting logic, and returns structured JSON to the frontend.
+- Optional Streamlit app in the backend folder can be run independently for exploration.
 
-## 1. Backend (Python API)
+### Backend folder structure
 
-The backend exposes an HTTP API that wraps your existing pipeline (`PDFProcessor`, `DataExtractor`, `DischargeFormatter`).
+```text
+ehr-data-pipeline-backend/
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── api_server.py          # FastAPI application entry point
+├── app.py                 # Streamlit application entry point
+├── src/
+│   ├── __init__.py
+│   ├── config.py          # Configuration and environment loading
+│   ├── pdf_processor.py   # Unstructured.io integration
+│   ├── data_extractor.py  # Structured data extraction
+│   ├── formatter.py       # Discharge summary formatting
+│   ├── section_editor.py  # Section selection utilities
+│   └── utils.py           # Shared helpers
+├── data/
+│   ├── uploads/           # PDFs uploaded through the API (created at runtime)
+│   ├── samples/           # Example PDFs for local testing
+│   └── processed/         # Processed JSON outputs (Streamlit)
+└── templates/
+   └── discharge_template.txt
+```
 
-Main entry:
+### Frontend folder structure
 
-- `ehr-data-pipeline-backend/api_server.py` – FastAPI app with endpoints under `/api`:
-  - `GET /api/health` – health check
-  - `GET /api/documents` – list processed documents
-  - `GET /api/documents/{id}` – get one document
-  - `POST /api/documents` – upload a PDF and run extraction
-  - `POST /api/documents/{id}/reextract` – re-run extraction with selected sections
-  - `GET /api/search?query=...` – simple text search across diagnoses/notes
+```text
+ehr-frontend-website/
+├── README.md
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── index.html
+├── App.tsx
+├── components/            # Layout, dashboard, auth, document views
+├── services/              # Auth and mock data services
+└── types.ts               # Shared TypeScript types
+```
 
-### Backend setup
+## Project layout
 
-From `ehr-data-pipeline-backend`:
+- `ehr-data-pipeline-backend/` – Python code, FastAPI server, Streamlit app, and processing pipeline.
+- `ehr-frontend-website/` – React + TypeScript frontend.
+- `setup.sh` – optional helper for first‑time dependency installation.
+- `start_app.sh` – optional helper script to start backend and frontend together (if configured).
 
-1. Create & activate a virtual environment (once):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # macOS/Linux
-   ```
+## Quick start
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 1. Backend API
 
-3. Configure environment (same as existing backend README):
-   - Create `.env` next to `app.py` with:
-     ```
-     UNSTRUCTURED_API_KEY=your_api_key_here
-     UNSTRUCTURED_API_URL=https://api.unstructured.io
-     OPENAI_API_KEY=your_openai_api_key_here
-     OPENAI_MODEL=gpt-4o-mini
-     ```
+From the backend folder:
 
-4. Run the API server:
-   ```bash
-   uvicorn api_server:app --reload --host 0.0.0.0 --port 8000
-   ```
+```bash
+cd ehr-data-pipeline-backend
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+pip install -r requirements.txt
+```
 
-5. Verify it is up:
-   - Open http://localhost:8000/api/health
+Create a `.env` file in `ehr-data-pipeline-backend` with at least:
 
-> Note: You can still run the original Streamlit UI with `streamlit run app.py` if you want, but it is separate from the React frontend.
+```env
+UNSTRUCTURED_API_KEY=your_unstructured_key
+UNSTRUCTURED_API_URL=https://api.unstructured.io
+OPENAI_API_KEY=your_openai_key
+OPENAI_MODEL=gpt-4o-mini
+RESEND_API_KEY=your_resend_key  # optional, required for email verification
+```
 
-## 2. Frontend (React + Vite)
+Start the FastAPI server:
 
-The frontend is a clinical dashboard that calls the Python API.
+```bash
+uvicorn api_server:app --reload --host 0.0.0.0 --port 8000
+```
 
-Key files:
+Verify the API:
 
-- `ehr-frontend-website/App.tsx` – main app shell
-- `ehr-frontend-website/components/` – `Dashboard`, `DocumentDetail`, `SearchInterface`, etc.
-- `ehr-frontend-website/services/mockService.ts` – now calls the real API at `/api/...` instead of mocks
+- Open http://localhost:8000/api/health and confirm `{ "status": "ok" }`.
 
-### Frontend setup
+You can still run the original Streamlit UI separately with:
 
-From `ehr-frontend-website`:
+```bash
+streamlit run app.py
+```
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+### 2. Frontend UI
 
-2. (Optional) Set `GEMINI_API_KEY` in `.env.local` if any parts of the app use Gemini.
+From the frontend folder:
 
-3. Run the dev server:
-   ```bash
-   npm run dev
-   ```
+```bash
+cd ehr-frontend-website
+npm install
+npm run dev
+```
 
-4. Open the app:
-   - Visit http://localhost:3000
+Open http://localhost:3000.
 
-The Vite dev server is configured to **proxy** any `/api` requests to the Python backend at `http://localhost:8000`, so the browser only sees a single origin.
+The frontend expects the backend to be available at `http://localhost:8000` and calls endpoints under `/api` (for example `/api/documents`, `/api/search`, `/api/send-code`).
 
-## 3. Running Backend and Frontend Together
+### 3. Running both together
 
-For local development:
+1. In one terminal, run the backend as shown above.
+2. In a second terminal, run the frontend dev server.
+3. Visit http://localhost:3000 to:
+   - Register and sign in.
+   - Upload clinical PDFs.
+   - View extracted data and discharge summaries.
+   - Search across processed documents.
 
-1. **Start backend** (from `ehr-data-pipeline-backend`):
-   ```bash
-   source venv/bin/activate
-   uvicorn api_server:app --reload --host 0.0.0.0 --port 8000
-   ```
+## API reference (summary)
 
-2. **Start frontend** (from `ehr-frontend-website`):
-   ```bash
-   npm run dev
-   ```
+Base URL during local development: `http://localhost:8000/api`
 
-3. Open http://localhost:3000
-   - Upload a PDF from the dashboard.
-   - The file and config (use_api/use_llm/sections) go to `POST /api/documents`.
-   - Extracted data, discharge summary, and search results are read back via the other `/api` endpoints.
+- `GET /health` – Health check.
+- `POST /send-code` – Send a verification code email.
+- `POST /verify-code` – Verify a code and return a mock token.
+- `GET /documents` – List processed documents.
+- `GET /documents/{id}` – Get a single processed document.
+- `POST /documents` – Upload and process a PDF.
+- `POST /documents/{id}/reextract` – Re-run extraction with selected sections.
+- `GET /search?query=...` – Search across diagnoses and clinical notes.
 
-## 4. Where to look for details
+## Additional files
 
-- Backend internals: see `ehr-data-pipeline-backend/README.md` and the `src/` modules.
-- Frontend details: see `ehr-frontend-website/README.md` and components under `components/`.
+- [ehr-data-pipeline-backend/README.md](ehr-data-pipeline-backend/README.md) – backend design and pipeline internals.
+- [ehr-frontend-website/README.md](ehr-frontend-website/README.md) – frontend usage and development notes.
+- [.gitignore](.gitignore) – workspace‑level ignore rules.
+- [LICENSE](LICENSE) – MIT license template for this project; replace the placeholders with your organization details.
 
-## 5. Repo utilities and metadata
-
-- [setup.sh](setup.sh) – one-time setup script that:
-   - Creates a Python virtual environment in [ehr-data-pipeline-backend](ehr-data-pipeline-backend) (if missing) and installs `requirements.txt`.
-   - Installs Node dependencies in [ehr-frontend-website](ehr-frontend-website) (if `node_modules` is missing).
-   - After it completes, you can start both apps using your normal commands (or a helper script like `start_app.sh`).
-
-- [.gitignore](.gitignore) – master ignore file for the whole workspace:
-   - Ignores OS cruft (like `.DS_Store`), logs, Python build artifacts and virtual environments, `node_modules`, IDE settings, and `.env` files.
-   - Backend and frontend also have their own folder-level `.gitignore` files for more specific patterns.
-
-- [LICENSE](LICENSE) – master project license (MIT by default):
-   - Grants broad permission to use, modify, and distribute the code.
-   - Update the year and owner line to match your name/organization.
-
-This root README is the high-level map; use the sub-READMEs for deeper implementation details.
