@@ -8,6 +8,8 @@ perform searches.
 from __future__ import annotations
 
 import os
+import random
+import resend
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
@@ -20,6 +22,24 @@ from src.pdf_processor import PDFProcessor
 from src.data_extractor import DataExtractor
 from src.formatter import DischargeFormatter
 
+
+# -------------------------------
+# CONFIGURATION
+# -------------------------------
+
+
+resend.api_key = "re_D2rvJmQQ_KB9aGsAyb3yeqjCXh4rnzEJ5"
+
+app = FastAPI(title="EHR Data Pipeline API")
+
+# Allow local dev from Vite
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # -------------------------------
 # Pydantic models (match frontend types.ts)
@@ -86,7 +106,12 @@ class SearchResult(BaseModel):
     context: str
     matchCount: int
 
+class EmailRequest(BaseModel):
+    email: str
 
+class VerificationRequest(BaseModel):
+    email: str
+    code: str
 # -------------------------------
 # In-memory store (simple demo)
 # -------------------------------
@@ -105,14 +130,45 @@ class InternalDocument(BaseModel):
 
 
 DOCUMENTS: Dict[str, InternalDocument] = {}
-
+VERIFICATION_CODES: Dict[str, str] = {}
 
 # -------------------------------
 # FastAPI app
 # -------------------------------
 
 
-app = FastAPI(title="EHR Data Pipeline API")
+@app.post("/api/send-code")
+def send_email(request: EmailRequest):
+    # Generate a random 6-digit code
+    code = str(random.randint(100000, 999999))
+    VERIFICATION_CODES[request.email] = code
+    
+    print(f"Generated code {code} for {request.email}")
+
+    try:
+        # Send via Resend
+        r = resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to": request.email, 
+            "subject": "Your EHR App Verification Code",
+            "html": f"<p>Your verification code is: <strong>{code}</strong></p>"
+        })
+        return {"message": "Email sent!", "id": r.get('id')}
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        # For development, if email fails, we still print code to console so you can login
+        return {"message": "Email failed (check console for code)", "mock_code": code}
+
+@app.post("/api/verify-code")
+def verify_code(request: VerificationRequest):
+    stored_code = VERIFICATION_CODES.get(request.email)
+    
+    # Check if code matches
+    if stored_code and stored_code == request.code:
+        del VERIFICATION_CODES[request.email]
+        return {"message": "Verified!", "token": "fake-jwt-token"}
+    else:
+        raise HTTPException(status_code=400, detail="Invalid verification code")
 
 # Allow local dev from Vite (http://localhost:3000) and tools.
 app.add_middleware(

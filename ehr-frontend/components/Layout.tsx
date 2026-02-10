@@ -1,13 +1,25 @@
 import React from 'react';
-import { LayoutDashboard, FileText, Search, Settings, Activity } from 'lucide-react';
+import { LayoutDashboard, FileText, Search, Settings, Activity, LogOut } from 'lucide-react';
+import { User } from '../types';
 
 interface LayoutProps {
   children: React.ReactNode;
   activeTab: string;
   onNavigate: (tab: string) => void;
+  user: User | null;
+  onLogout: () => void;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, activeTab, onNavigate }) => {
+const Layout: React.FC<LayoutProps> = ({ children, activeTab, onNavigate, user, onLogout }) => {
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   return (
     <div className="flex h-screen bg-slate-50 overflow-hidden">
       {/* Sidebar */}
@@ -18,8 +30,8 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, onNavigate }) => {
               <Activity className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white tracking-tight">ClinicalDoc AI</h1>
-              <p className="text-xs text-slate-400 font-mono">v2.1.0-beta</p>
+              <h1 className="text-lg font-bold text-white tracking-tight">Traceable Health</h1>
+              <p className="text-xs text-slate-400 font-mono">v0.3.1 beta</p>
             </div>
           </div>
         </div>
@@ -45,10 +57,24 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, onNavigate }) => {
           />
         </nav>
 
-        <div className="p-4 border-t border-slate-700">
-          <button className="flex items-center gap-3 px-4 py-2 w-full text-sm font-medium hover:text-white transition-colors">
+        <div className="p-4 border-t border-slate-700 space-y-2">
+          <button 
+            onClick={() => onNavigate('settings')}
+            className={`flex items-center gap-3 px-4 py-2 w-full text-sm font-medium transition-colors rounded-lg ${
+                activeTab === 'settings' 
+                ? 'bg-slate-800 text-white' 
+                : 'hover:text-white hover:bg-slate-800'
+            }`}
+          >
             <Settings size={18} />
             <span>System Settings</span>
+          </button>
+          <button 
+            onClick={onLogout}
+            className="flex items-center gap-3 px-4 py-2 w-full text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-900/20 rounded-lg transition-colors"
+          >
+            <LogOut size={18} />
+            <span>Sign Out</span>
           </button>
         </div>
       </aside>
@@ -61,11 +87,15 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, onNavigate }) => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex flex-col items-end">
-              <span className="text-sm font-medium text-slate-700">Dr. Alex Mitchell</span>
-              <span className="text-xs text-slate-500">Chief Resident</span>
+              <span className="text-sm font-medium text-slate-700">{user?.name || 'Guest User'}</span>
+              <span className="text-xs text-slate-500">{user?.role || 'Clinician'}</span>
             </div>
-            <div className="h-10 w-10 rounded-full bg-slate-200 flex items-center justify-center border border-slate-300">
-                <span className="font-bold text-slate-600">AM</span>
+            <div className="h-10 w-10 rounded-full bg-brand-50 flex items-center justify-center border border-brand-200 text-brand-700 overflow-hidden">
+                {user?.profileImage ? (
+                    <img src={user.profileImage} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                    <span className="font-bold text-sm">{user ? getInitials(user.name) : 'G'}</span>
+                )}
             </div>
           </div>
         </header>

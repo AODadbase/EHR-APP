@@ -1,0 +1,4 @@
+{
+  "name": "Traceable Health",
+  "description": "A formal, technological frontend for processing medical PDFs, extracting structured data, and generating discharge summaries using Traceable Health AI pipelines."
+}

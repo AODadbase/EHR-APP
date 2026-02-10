@@ -1,5 +1,17 @@
 // Matching schema from DataExtractor (Image 2)
 
+export interface User {
+  username: string;
+  name: string;
+  role: string;
+  email: string;
+  organization: string;
+  secondaryEmail?: string;
+  pronoun?: string;
+  position?: string;
+  profileImage?: string; // Base64 string
+}
+
 export interface PatientInfo {
   name: string | null;
   mrn: string | null;
