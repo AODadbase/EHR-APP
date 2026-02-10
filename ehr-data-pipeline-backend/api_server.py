@@ -1,9 +1,4 @@
-"""FastAPI server exposing the EHR data pipeline as a JSON API.
-
-This reuses the existing PDFProcessor, DataExtractor, and DischargeFormatter
-modules so the React frontend can upload PDFs, view extracted data, and
-perform searches.
-"""
+"""FastAPI server exposing the EHR data pipeline as a JSON API."""
 
 from __future__ import annotations
 
@@ -13,6 +8,7 @@ import resend
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
+from dotenv import load_dotenv
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -27,12 +23,15 @@ from src.formatter import DischargeFormatter
 # CONFIGURATION
 # -------------------------------
 
+load_dotenv()
 
-resend.api_key = "re_D2rvJmQQ_KB9aGsAyb3yeqjCXh4rnzEJ5"
+resend.api_key = os.getenv("RESEND_API_KEY")
+
+if not resend.api_key:
+    print("WARNING: No RESEND_API_KEY found in .env file. Emails will fail.")
 
 app = FastAPI(title="EHR Data Pipeline API")
 
-# Allow local dev from Vite
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], 
@@ -41,10 +40,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# -------------------------------
-# Pydantic models (match frontend types.ts)
-# -------------------------------
 
+# -------------------------------
+# PYDANTIC MODELS
+# -------------------------------
 
 class PatientInfo(BaseModel):
     name: Optional[str] = None
@@ -53,7 +52,6 @@ class PatientInfo(BaseModel):
     gender: Optional[str] = None
     date_of_birth: Optional[str] = None
 
-
 class VitalSigns(BaseModel):
     blood_pressure: Optional[str] = None
     heart_rate: Optional[str] = None
@@ -61,11 +59,9 @@ class VitalSigns(BaseModel):
     respiratory_rate: Optional[str] = None
     oxygen_saturation: Optional[str] = None
 
-
 class Medication(BaseModel):
     name: str
     dosage: str
-
 
 class ExtractedData(BaseModel):
     patient_info: PatientInfo
@@ -76,28 +72,24 @@ class ExtractedData(BaseModel):
     procedures: List[str]
     clinical_notes: List[str]
 
-
 class ProcessedDocument(BaseModel):
     id: str
     filename: str
     uploadDate: str
-    status: str  # 'processing' | 'completed' | 'failed'
+    status: str
     use_api: bool
     use_llm: bool
     extracted_data: Optional[ExtractedData] = None
     discharge_summary: Optional[str] = None
     elements_count: Optional[int] = None
 
-
 class UploadConfig(BaseModel):
     use_api: bool = True
     use_llm: bool = True
     selected_sections: Optional[List[str]] = None
 
-
 class ReExtractRequest(BaseModel):
     selected_sections: List[str]
-
 
 class SearchResult(BaseModel):
     id: str
@@ -112,10 +104,11 @@ class EmailRequest(BaseModel):
 class VerificationRequest(BaseModel):
     email: str
     code: str
-# -------------------------------
-# In-memory store (simple demo)
-# -------------------------------
 
+
+# -------------------------------
+# IN-MEMORY STORE
+# -------------------------------
 
 class InternalDocument(BaseModel):
     id: str
@@ -128,66 +121,20 @@ class InternalDocument(BaseModel):
     extracted_data: Dict[str, Any]
     discharge_summary: str
 
-
 DOCUMENTS: Dict[str, InternalDocument] = {}
 VERIFICATION_CODES: Dict[str, str] = {}
 
+
 # -------------------------------
-# FastAPI app
+# HELPER FUNCTIONS
 # -------------------------------
-
-
-@app.post("/api/send-code")
-def send_email(request: EmailRequest):
-    # Generate a random 6-digit code
-    code = str(random.randint(100000, 999999))
-    VERIFICATION_CODES[request.email] = code
-    
-    print(f"Generated code {code} for {request.email}")
-
-    try:
-        # Send via Resend
-        r = resend.Emails.send({
-            "from": "onboarding@resend.dev",
-            "to": request.email, 
-            "subject": "Your EHR App Verification Code",
-            "html": f"<p>Your verification code is: <strong>{code}</strong></p>"
-        })
-        return {"message": "Email sent!", "id": r.get('id')}
-    except Exception as e:
-        print(f"Error sending email: {e}")
-        # For development, if email fails, we still print code to console so you can login
-        return {"message": "Email failed (check console for code)", "mock_code": code}
-
-@app.post("/api/verify-code")
-def verify_code(request: VerificationRequest):
-    stored_code = VERIFICATION_CODES.get(request.email)
-    
-    # Check if code matches
-    if stored_code and stored_code == request.code:
-        del VERIFICATION_CODES[request.email]
-        return {"message": "Verified!", "token": "fake-jwt-token"}
-    else:
-        raise HTTPException(status_code=400, detail="Invalid verification code")
-
-# Allow local dev from Vite (http://localhost:3000) and tools.
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # tighten in production
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 
 def _ensure_upload_dir() -> str:
     base_dir = os.path.join(os.path.dirname(__file__), "data", "uploads")
     os.makedirs(base_dir, exist_ok=True)
     return base_dir
 
-
 def _to_extracted_model(raw: Dict[str, Any]) -> ExtractedData:
-    # Ensure missing keys become empty structures so frontend types are satisfied.
     return ExtractedData(
         patient_info=PatientInfo(**raw.get("patient_info", {})),
         vital_signs=VitalSigns(**raw.get("vital_signs", {})),
@@ -197,7 +144,6 @@ def _to_extracted_model(raw: Dict[str, Any]) -> ExtractedData:
         procedures=raw.get("procedures", []) or [],
         clinical_notes=raw.get("clinical_notes", []) or [],
     )
-
 
 def _to_api_document(doc: InternalDocument) -> ProcessedDocument:
     return ProcessedDocument(
@@ -213,17 +159,47 @@ def _to_api_document(doc: InternalDocument) -> ProcessedDocument:
     )
 
 
+# -------------------------------
+# API ROUTES
+# -------------------------------
+
+@app.post("/api/send-code")
+def send_email(request: EmailRequest):
+    code = str(random.randint(100000, 999999))
+    VERIFICATION_CODES[request.email] = code
+    
+    print(f"Generated code {code} for {request.email}")
+
+    try:
+        r = resend.Emails.send({
+            "from": "onboarding@resend.dev",
+            "to": request.email, 
+            "subject": "Your EHR App Verification Code",
+            "html": f"<p>Your verification code is: <strong>{code}</strong></p>"
+        })
+        return {"message": "Email sent!", "id": r.get('id')}
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        return {"message": "Email failed (check console)", "mock_code": code}
+
+@app.post("/api/verify-code")
+def verify_code(request: VerificationRequest):
+    stored_code = VERIFICATION_CODES.get(request.email)
+    
+    if stored_code and stored_code == request.code:
+        del VERIFICATION_CODES[request.email]
+        return {"message": "Verified!", "token": "fake-jwt-token"}
+    else:
+        raise HTTPException(status_code=400, detail="Invalid verification code")
+
 @app.get("/api/health")
 async def health_check() -> Dict[str, str]:
     return {"status": "ok"}
 
-
 @app.get("/api/documents", response_model=List[ProcessedDocument])
 async def list_documents() -> List[ProcessedDocument]:
-    # Return most recent first
     docs = sorted(DOCUMENTS.values(), key=lambda d: d.upload_date, reverse=True)
     return [_to_api_document(d) for d in docs]
-
 
 @app.get("/api/documents/{doc_id}", response_model=ProcessedDocument)
 async def get_document(doc_id: str) -> ProcessedDocument:
@@ -232,15 +208,13 @@ async def get_document(doc_id: str) -> ProcessedDocument:
         raise HTTPException(status_code=404, detail="Document not found")
     return _to_api_document(doc)
 
-
 @app.post("/api/documents", response_model=ProcessedDocument)
 async def upload_document(
     file: UploadFile = File(...),
     use_api: bool = Form(True),
     use_llm: bool = Form(True),
-    selected_sections: Optional[str] = Form(None),  # JSON-encoded list from frontend
+    selected_sections: Optional[str] = Form(None),
 ) -> ProcessedDocument:
-    # Persist uploaded file to disk
     upload_dir = _ensure_upload_dir()
     file_id = str(uuid4())
     safe_name = file.filename or f"document-{file_id}.pdf"
@@ -250,7 +224,6 @@ async def upload_document(
         content = await file.read()
         f.write(content)
 
-    # Process PDF and extract data
     processor = PDFProcessor(use_api=use_api)
     elements = processor.process_pdf(save_path)
 
@@ -259,7 +232,6 @@ async def upload_document(
     if selected_sections:
         try:
             import json
-
             sections = json.loads(selected_sections)
         except Exception:
             sections = None
@@ -287,7 +259,6 @@ async def upload_document(
 
     return _to_api_document(internal)
 
-
 @app.post("/api/documents/{doc_id}/reextract", response_model=ProcessedDocument)
 async def reextract_document(doc_id: str, payload: ReExtractRequest) -> ProcessedDocument:
     doc = DOCUMENTS.get(doc_id)
@@ -304,19 +275,13 @@ async def reextract_document(doc_id: str, payload: ReExtractRequest) -> Processe
 
     doc.extracted_data = extracted
     doc.discharge_summary = discharge_summary
-    doc.upload_date = datetime.utcnow()  # refresh timestamp
+    doc.upload_date = datetime.utcnow()
     DOCUMENTS[doc_id] = doc
 
     return _to_api_document(doc)
 
-
 @app.get("/api/search", response_model=List[SearchResult])
 async def search_documents(query: str) -> List[SearchResult]:
-    """Very simple substring search over diagnoses and clinical notes.
-
-    This is a placeholder; you can later plug in a vector DB or more
-    advanced search while keeping the same response shape for the frontend.
-    """
     q = query.strip()
     if not q:
         return []
@@ -326,17 +291,18 @@ async def search_documents(query: str) -> List[SearchResult]:
 
     for doc in DOCUMENTS.values():
         data = doc.extracted_data or {}
-        diagnoses = "\n".join(data.get("diagnoses", []) or [])
-        notes = "\n".join(data.get("clinical_notes", []) or [])
-        haystack = f"{diagnoses}\n{notes}".lower()
+        haystack = (
+            "\n".join(data.get("diagnoses", []) or []) + 
+            "\n" + 
+            "\n".join(data.get("clinical_notes", []) or [])
+        ).lower()
 
         if q_lower in haystack:
-            # Build a simple context snippet with highlighted query
             idx = haystack.find(q_lower)
             start = max(0, idx - 60)
             end = idx + len(q) + 60
-            original_text = f"{diagnoses}\n{notes}"[start:end]
-            highlighted = original_text.replace(q, f"<b>{q}</b>")
+            original_text = haystack[start:end]
+            highlighted = original_text.replace(q_lower, f"<b>{q_lower}</b>")
 
             results.append(
                 SearchResult(
@@ -347,12 +313,8 @@ async def search_documents(query: str) -> List[SearchResult]:
                     matchCount=haystack.count(q_lower),
                 )
             )
-
     return results
 
-
-# Convenience entrypoint for `uvicorn api_server:app --reload`
 if __name__ == "__main__":
     import uvicorn
-
     uvicorn.run("api_server:app", host="0.0.0.0", port=8000, reload=True)
