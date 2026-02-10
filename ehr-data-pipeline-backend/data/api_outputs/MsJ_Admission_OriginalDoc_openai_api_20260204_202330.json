@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-02-04T20:23:30.798979",
+  "model": "gpt-4o-mini",
+  "response": {
+    "patient_info": {
+      "name": "Ms. J",
+      "age": "76",
+      "gender": "Female"
+    },
+    "diagnoses": [
+      "Sepsis secondary to pneumonia",
+      "Atrial fibrillation with rapid ventricular rate",
+      "Hyponatremia, hypovolemic",
+      "Migratory polyarthralgia"
+    ],
+    "medications": [
+      {
+        "name": "Diltiazem",
+        "dosage": "120 mg p.o. daily"
+      },
+      {
+        "name": "Metoprolol",
+        "dosage": "50 mg po bid"
+      },
+      {
+        "name": "Apixaban",
+        "dosage": "5 mg oral b.i.d."
+      },
+      {
+        "name": "Amoxi-Clav",
+        "dosage": "500/125 mg t.i.d."
+      },
+      {
+        "name": "Ceftriaxone",
+        "dosage": "1 g IV q 24"
+      },
+      {
+        "name": "Azithromycin",
+        "dosage": "500 mg now followed by 250 mg daily for 5 days"
+      },
+      {
+        "name": "CBD oil",
+        "dosage": "at bedtime"
+      },
+      {
+        "name": "Tylenol",
+        "dosage": "650 mg q4 hrs PRN"
+      },
+      {
+        "name": "Nabilone",
+        "dosage": "1 mg qhs"
+      }
+    ],
+    "allergies": [
+      "Severe reaction to paclitaxel chemotherapy"
+    ],
+    "vital_signs": {
+      "blood_pressure": "106/76",
+      "heart_rate": "95 to 106",
+      "temperature": "37.3",
+      "respiratory_rate": "22",
+      "oxygen_saturation": "97% on 2 litres"
+    }
+  },
+  "raw_response_text": "{\n  \"patient_info\": {\n    \"name\": \"Ms. J\",\n    \"age\": \"76\",\n    \"gender\": \"Female\"\n  },\n  \"diagnoses\": [\n    \"Sepsis secondary to pneumonia\",\n    \"Atrial fibrillation with rapid ventricular rate\",\n    \"Hyponatremia, hypovolemic\",\n    \"Migratory polyarthralgia\"\n  ],\n  \"medications\": [\n    {\n      \"name\": \"Diltiazem\",\n      \"dosage\": \"120 mg p.o. daily\"\n    },\n    {\n      \"name\": \"Metoprolol\",\n      \"dosage\": \"50 mg po bid\"\n    },\n    {\n      \"name\": \"Apixaban\",\n      \"dosage\": \"5 mg oral b.i.d.\"\n    },\n    {\n      \"name\": \"Amoxi-Clav\",\n      \"dosage\": \"500/125 mg t.i.d.\"\n    },\n    {\n      \"name\": \"Ceftriaxone\",\n      \"dosage\": \"1 g IV q 24\"\n    },\n    {\n      \"name\": \"Azithromycin\",\n      \"dosage\": \"500 mg now followed by 250 mg daily for 5 days\"\n    },\n    {\n      \"name\": \"CBD oil\",\n      \"dosage\": \"at bedtime\"\n    },\n    {\n      \"name\": \"Tylenol\",\n      \"dosage\": \"650 mg q4 hrs PRN\"\n    },\n    {\n      \"name\": \"Nabilone\",\n      \"dosage\": \"1 mg qhs\"\n    }\n  ],\n  \"allergies\": [\n    \"Severe reaction to paclitaxel chemotherapy\"\n  ],\n  \"vital_signs\": {\n    \"blood_pressure\": \"106/76\",\n    \"heart_rate\": \"95 to 106\",\n    \"temperature\": \"37.3\",\n    \"respiratory_rate\": \"22\",\n    \"oxygen_saturation\": \"97% on 2 litres\"\n  }\n}",
+  "prompt_preview": "Extract all structured medical data from the following document sections. Return ONLY a valid JSON object with these fields:\n\n- patient_info: Object with fields: name, mrn, age, gender, date_of_birth (all optional)\n- diagnoses: Array of diagnosis strings\n- medications: Array of objects with \"name\" and \"dosage\" fields\n- allergies: Array of allergy strings (empty array if \"no known allergies\" or \"NKA\")\n- vital_signs: Object with fields: blood_pressure, heart_rate, temperature, respiratory_rate, ox..."
+}

@@ -1,0 +1,30 @@
+DISCHARGE SUMMARY
+Date: {date}
+
+PATIENT INFORMATION:
+  Name: {patient_name}
+  Date of Birth: {date_of_birth}
+  MRN: {mrn}
+  Age: {age}
+  Gender: {gender}
+
+VITAL SIGNS:
+{vital_signs}
+
+DIAGNOSES:
+{diagnoses}
+
+MEDICATIONS:
+{medications}
+
+ALLERGIES:
+{allergies}
+
+PROCEDURES:
+{procedures}
+
+CLINICAL NOTES:
+{clinical_notes}
+
+---
+Generated on: {date}
